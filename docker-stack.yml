@@ -10,7 +10,6 @@ services:
     image: redis:alpine
     networks:
       - frontend
-
   db:
     image: postgres:15-alpine
     environment:
@@ -29,6 +28,8 @@ services:
       - frontend
     deploy:
       replicas: 2
+      restart_policy:
+        condition: on-failure
 
   result:
     image: dockersamples/examplevotingapp_result
